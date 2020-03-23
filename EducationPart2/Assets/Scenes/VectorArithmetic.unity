@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7941db3885c8c479a895f48c4447f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveDirection: {x: 0, y: 0, z: 0}
+  _moveDirection: {x: 1, y: 0, z: 0}
 --- !u!1 &875561450
 GameObject:
   m_ObjectHideFlags: 0
