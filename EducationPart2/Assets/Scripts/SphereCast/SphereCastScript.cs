@@ -23,11 +23,13 @@ public class SphereCastScript : MonoBehaviour
         RaycastHit hit;
         if(Physics.SphereCast(transform.position, _sphereCastRadius, Vector3.right, out hit, _sphereCastMaxDistance))
         {
-            _laserLine.enabled = false;          
+            _laserLine.enabled = false;
+            PlayerPrefs.SetString("target", "FRIENDLY CUBE");
         }
         else
         {
             _laserLine.enabled = true;
-        }
+            PlayerPrefs.SetString("target", "NO TARGET");
+        }        
     }
 }
