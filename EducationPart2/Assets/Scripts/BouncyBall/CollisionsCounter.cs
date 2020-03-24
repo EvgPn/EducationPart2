@@ -15,7 +15,6 @@ public class CollisionsCounter : MonoBehaviour
         if(collision.gameObject.layer == _platformLayer)
         {
             _bounceCounter++;
-            
         }
     }
     private void OnTriggerEnter(Collider other)
