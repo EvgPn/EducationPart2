@@ -1110,8 +1110,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bf69b1ab627504897f3b1dd55b1967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bounceCounterUI: {fileID: 1781121171}
-  _passCounterUI: {fileID: 1703501764}
+  _platformLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _circleLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &1782629542
 MonoBehaviour:
   m_ObjectHideFlags: 0

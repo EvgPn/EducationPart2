@@ -1,37 +1,28 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class CollisionsCounter : MonoBehaviour
 {
     [SerializeField]
-    private Text _bounceCounterUI;
-
+    private LayerMask _platformLayer = new LayerMask();
     [SerializeField]
-    private Text _passCounterUI;
+    private LayerMask _circleLayer = new LayerMask();
 
-    private float _bounceCounter = 0f;
-    private float _passCounter = 0f;
+    private int _bounceCounter = 0;
+    private int _passCounter = 0;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == 8)
+        if(collision.gameObject.layer == _platformLayer)
         {
-            if(_bounceCounterUI != null)
-            {
-                _bounceCounter++;
-                _bounceCounterUI.text = _bounceCounter.ToString();
-            }
+            _bounceCounter++;
+            
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == _circleLayer)
         {
-            if (_passCounterUI != null)
-            {
-                _passCounter++;
-                _passCounterUI.text = _passCounter.ToString();
-            }
+            _passCounter++;
         }
     }
 }

@@ -5,15 +5,16 @@ public class QuaternionRotation : MonoBehaviour
     [SerializeField]
     private float _rpm = 60f;
     [SerializeField]
-    private Transform _centerOfRotation;
-    private Vector3 _v;
+    private GameObject _centerOfRotation = null;
+    private Vector3 _distanceToTheCenterOfRotation;
+    
     private void Start()
-    {
-        _v = transform.position - _centerOfRotation.position;
+    {        
+        _distanceToTheCenterOfRotation = transform.position - _centerOfRotation.transform.position;
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        _v = Quaternion.AngleAxis(Time.deltaTime * _rpm * 6f, Vector3.up) * _v;
-        transform.position = _centerOfRotation.position + _v; 
+        _distanceToTheCenterOfRotation = Quaternion.AngleAxis(Time.deltaTime * _rpm * 6f, Vector3.up) * _distanceToTheCenterOfRotation;
+        transform.position = _centerOfRotation.transform.position + _distanceToTheCenterOfRotation; 
     }
 }

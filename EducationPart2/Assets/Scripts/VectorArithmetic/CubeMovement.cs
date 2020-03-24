@@ -6,7 +6,7 @@ public class CubeMovement : MonoBehaviour
     private Vector3 _moveDirection = new Vector3(0, 0, 0); //e.g. (1,0,0)
     private float _moveSpeed = 2f;
 
-    private void FixedUpdate()
+    private void Update()
     {
         transform.position += _moveDirection * _moveSpeed * Time.deltaTime;
     }
