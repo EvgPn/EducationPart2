@@ -9,7 +9,7 @@ public class SphereCastScript : MonoBehaviour
     private LineRenderer _laserLine;
     private float _sphereCastMaxDistance;
 
-    void Start()
+    private void Start()
     {
         _laserLine = GetComponent<LineRenderer>();
         _laserLine.SetPosition(0, transform.position);
@@ -18,7 +18,7 @@ public class SphereCastScript : MonoBehaviour
         _sphereCastMaxDistance = Vector3.Distance(transform.position, _laserLine.GetPosition(1));
     }
 
-    void Update()
+    private void Update()
     {
         RaycastHit hit;
         if(Physics.SphereCast(transform.position, _sphereCastRadius, Vector3.right, out hit, _sphereCastMaxDistance))

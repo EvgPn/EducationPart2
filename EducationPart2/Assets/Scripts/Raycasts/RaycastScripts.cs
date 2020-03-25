@@ -5,12 +5,12 @@ public class RaycastScripts : MonoBehaviour
     private float _raycastRange = 50f;                                               
     private LineRenderer _laserLine;                                        
 
-    void Start()
+    private void Start()
     {
         _laserLine = GetComponent<LineRenderer>();
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
