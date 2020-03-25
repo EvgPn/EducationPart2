@@ -1,27 +1,37 @@
 ﻿using UnityEngine;
 
 public class CollisionsCounter : MonoBehaviour
-{
-    [SerializeField]
-    private LayerMask _platformLayer = new LayerMask();
-    [SerializeField]
-    private LayerMask _circleLayer = new LayerMask();
-
+{    
     private int _bounceCounter = 0;
     private int _passCounter = 0;
 
+    public delegate void OnBounceAmountReceived(int amount);
+    public event OnBounceAmountReceived OnBouncingCount;
+
+    public delegate void OnPassesAmountReceived(int amount);
+    public event OnPassesAmountReceived OnPassesCount;
+
+    private void Start()
+    { 
+        OnBouncingCount += BallEventController.BounceCounterUI;
+        OnPassesCount += BallEventController.PassCounterUI;
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == _platformLayer)
+        string layerName = LayerMask.LayerToName(collision.gameObject.layer);
+        if (layerName == "Platform")
         {
             _bounceCounter++;
+            OnBouncingCount(_bounceCounter);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == _circleLayer)
+        string layerName = LayerMask.LayerToName(other.gameObject.layer);
+        if (layerName == "Circle")
         {
             _passCounter++;
+            OnPassesCount(_passCounter);
         }
     }
 }
