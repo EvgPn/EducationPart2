@@ -5,28 +5,32 @@ public class CollisionsCounter : MonoBehaviour
     private int _bounceCounter = 0;
     private int _passCounter = 0;
 
-    public delegate void OnBounceAmountReceived(int amount);
-    public static event OnBounceAmountReceived OnBouncingCount;
+    public delegate void BounceCounterCallback(int amount);
+    public static event BounceCounterCallback IncreaseBounces;
 
-    public delegate void OnPassesAmountReceived(int amount);
-    public static event OnPassesAmountReceived OnPassesCount;
+    public delegate void PassesCounterCallback(int amount);
+    public static event PassesCounterCallback IncreasePasses;
     
     private void OnCollisionEnter(Collision collision)
     {
-        string layerName = LayerMask.LayerToName(collision.gameObject.layer);
-        if (layerName == "Platform")
+        if (LayerToName(collision.gameObject.layer) == "Platform")
         {
             _bounceCounter++;
-            OnBouncingCount(_bounceCounter);
+            IncreaseBounces?.Invoke(_bounceCounter);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        string layerName = LayerMask.LayerToName(other.gameObject.layer);
-        if (layerName == "Circle")
+        if (LayerToName(other.gameObject.layer) == "Circle")
         {
             _passCounter++;
-            OnPassesCount(_passCounter);
+            IncreasePasses?.Invoke(_passCounter);
         }
+    }
+
+    private string LayerToName(LayerMask layer)
+    {
+        return LayerMask.LayerToName(layer);
     }
 }

@@ -11,20 +11,30 @@ public class BallEventController : MonoBehaviour
     private static Text _bounceCounter;
     private static Text _passCounter;
 
+    private void OnEnable()
+    {
+        SubscribeEvents();
+    }
+
     private void Start()
     {
-        CollisionsCounter.OnBouncingCount += BounceCounterUI;
-        CollisionsCounter.OnPassesCount += PassCounterUI;
-
         _bounceCounter = _bounceCounterGO.GetComponent<Text>();
         _passCounter = _passCounterGO.GetComponent<Text>();
     }
+
     public static void BounceCounterUI(int amount)
     {
         _bounceCounter.text = amount.ToString();
     }
+
     public static void PassCounterUI(int amount)
     {
         _passCounter.text = amount.ToString();
+    }
+
+    private void SubscribeEvents()
+    {
+        CollisionsCounter.IncreaseBounces += BounceCounterUI;
+        CollisionsCounter.IncreasePasses += PassCounterUI;
     }
 }
