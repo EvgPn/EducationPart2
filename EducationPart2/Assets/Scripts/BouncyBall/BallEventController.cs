@@ -13,6 +13,9 @@ public class BallEventController : MonoBehaviour
 
     private void Start()
     {
+        CollisionsCounter.OnBouncingCount += BounceCounterUI;
+        CollisionsCounter.OnPassesCount += PassCounterUI;
+
         _bounceCounter = _bounceCounterGO.GetComponent<Text>();
         _passCounter = _passCounterGO.GetComponent<Text>();
     }

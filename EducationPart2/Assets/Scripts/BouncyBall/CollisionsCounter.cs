@@ -6,16 +6,11 @@ public class CollisionsCounter : MonoBehaviour
     private int _passCounter = 0;
 
     public delegate void OnBounceAmountReceived(int amount);
-    public event OnBounceAmountReceived OnBouncingCount;
+    public static event OnBounceAmountReceived OnBouncingCount;
 
     public delegate void OnPassesAmountReceived(int amount);
-    public event OnPassesAmountReceived OnPassesCount;
-
-    private void Start()
-    { 
-        OnBouncingCount += BallEventController.BounceCounterUI;
-        OnPassesCount += BallEventController.PassCounterUI;
-    }
+    public static event OnPassesAmountReceived OnPassesCount;
+    
     private void OnCollisionEnter(Collision collision)
     {
         string layerName = LayerMask.LayerToName(collision.gameObject.layer);
